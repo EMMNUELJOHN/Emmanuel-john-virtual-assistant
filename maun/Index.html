@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emmanuel John | Virtual Assistant Portfolio</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body { 
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+      background: linear-gradient(135deg, #001a4d 0%, #003d99 100%);
+      color: #333; 
+      line-height: 1.6;
+    }
+    
+    nav {
+      background: rgba(0, 0, 0, 0.8);
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      transition: color 0.3s;
+      font-weight: 500;
+    }
+    
+    nav a:hover { color: #0099ff; }
+    
+    .container { 
+      max-width: 1000px; 
+      margin: 0 auto; 
+      padding: 0 20px;
+    }
+
+    /* Header */
+    header { 
+      display: flex; 
+      flex-wrap: wrap; 
+      align-items: center; 
+      margin: 60px auto 40px;
+      padding: 40px;
+      background: #fff; 
+      border-radius: 15px; 
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    }
+    
+    header img { 
+      width: 180px; 
+      height: 180px; 
+      border-radius: 50%; 
+      object-fit: cover; 
+      margin-right: 40px; 
+      border: 5px solid #0066cc;
+      box-shadow: 0 5px 20px rgba(0, 102, 204, 0.4);
+    }
+    
+    header div { flex: 1; min-width: 300px; }
+    header h1 { font-size: 2.5rem; margin-bottom: 5px; color: #0066cc; }
+    header h2 { font-size: 1.3rem; color: #666; margin-bottom: 10px; }
+    header p { margin-top: 8px; color: #555; }
+    
+    .contact-links {
+      margin-top: 15px;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    
+    .contact-links a {
+      color: #0066cc;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+    
+    .contact-links a:hover { color: #0099ff; }
+    
+    .btn-contact { 
+      display: inline-block; 
+      padding: 12px 30px; 
+      background: linear-gradient(135deg, #0066cc, #0099ff);
+      color: #fff; 
+      border-radius: 25px; 
+      margin-top: 15px; 
+      transition: 0.4s;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    }
+    
+    .btn-contact:hover { 
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 102, 204, 0.6);
+    }
+
+    section { 
+      margin-bottom: 40px;
+      padding: 40px;
+      background: #fff; 
+      border-radius: 15px; 
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    }
+    
+    section h3 { 
+      font-size: 2rem; 
+      color: #0066cc; 
+      margin-bottom: 25px; 
+      border-bottom: 3px solid #0066cc; 
+      display: inline-block; 
+      padding-bottom: 8px;
+    }
+    
+    ul { list-style: none; }
+    li { margin-bottom: 12px; color: #555; }
+    li strong { color: #0066cc; }
+
+    .skills-grid { 
+      display: flex; 
+      flex-wrap: wrap; 
+      gap: 12px;
+    }
+    
+    .skill { 
+      background: linear-gradient(135deg, #0066cc, #0099ff);
+      color: #fff; 
+      padding: 8px 16px; 
+      border-radius: 25px; 
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
+    }
+
+    /* Portfolio / Gallery */
+    .portfolio-grid { 
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    
+    .portfolio-item { 
+      background: #f8f9fa; 
+      border-radius: 10px; 
+      overflow: hidden; 
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: 0.3s;
+    }
+    
+    .portfolio-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 102, 204, 0.3);
+    }
+    
+    .portfolio-item img { 
+      width: 100%; 
+      height: 200px;
+      object-fit: cover;
+      background: #e9ecef;
+    }
+    
+    .portfolio-item p { 
+      padding: 15px;
+      font-size: 0.95rem; 
+      color: #666;
+      font-weight: 500;
+    }
+
+    /* Testimonials */
+    .testimonials { position: relative; }
+    
+    .testimonial {
+      background: #f8f9fa;
+      padding: 25px;
+      border-radius: 10px;
+      border-left: 4px solid #0066cc;
+      display: none;
+      animation: fadeIn 0.5s;
+    }
+    
+    .testimonial.active { display: block; }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    .testimonial p { font-style: italic; margin-bottom: 10px; color: #555; }
+    .testimonial strong { color: #0066cc; }
+    
+    .carousel-controls {
+      text-align: center;
+      margin-top: 20px;
+    }
+    
+    .carousel-btn {
+      background: #0066cc;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      margin: 0 5px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    
+    .carousel-btn:hover { background: #0099ff; }
+
+    /* Contact Form */
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      max-width: 600px;
+    }
+    
+    .contact-form input,
+    .contact-form textarea {
+      padding: 12px;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 1rem;
+      transition: 0.3s;
+    }
+    
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      border-color: #0066cc;
+      box-shadow: 0 0 8px rgba(0, 102, 204, 0.2);
+    }
+    
+    .contact-form button {
+      padding: 12px 30px;
+      background: linear-gradient(135deg, #0066cc, #0099ff);
+      color: white;
+      border: none;
+      border-radius: 25px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 4px 15px rgba(0, 102, 204, 0.4);
+    }
+    
+    .contact-form button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 102, 204, 0.6);
+    }
+
+    footer { 
+      text-align: center; 
+      margin-top: 40px; 
+      padding: 30px 20px;
+      background: rgba(0, 0, 0, 0.8);
+      color: #fff;
+      border-radius: 15px;
+    }
+
+    /* Media Queries */
+    @media(max-width: 768px) {
+      header { 
+        flex-direction: column; 
+        text-align: center; 
+        margin: 30px auto 20px;
+        padding: 20px;
+      }
+      header img { margin: 0 0 20px 0; }
+      header h1 { font-size: 1.8rem; }
+      header h2 { font-size: 1rem; }
+      section { padding: 20px; }
+      section h3 { font-size: 1.5rem; }
+      nav ul { gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#testimonials">Testimonials</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <!-- Header -->
+    <header id="home">
+      <img src="Emmanuel photo.jpeg" alt="Emmanuel John">
+      <div>
+        <h1>Emmanuel John</h1>
+        <h2>Helping businesses stay organized, efficient, and productive</h2>
+        <p><strong>Location:</strong> Nigeria | <strong>Phone:</strong> +2347073607977</p>
+        <div class="contact-links">
+          <a href="mailto:itsemmanuelj122@gmail.com">itsemmanuelj122@gmail.com</a>
+        </div>
+        <a href="#contact" class="btn-contact">👇 Get in Touch</a>
+      </div>
+    </header>
+
+    <!-- About Me -->
+    <section id="about">
+      <h3>About Me</h3>
+      <p>I am a professional Virtual Assistant passionate about helping busy professionals and small businesses manage their daily tasks. I specialize in email management, data entry, calendar organization, file management, and simple graphic design using Canva.</p>
+      <p>My goal is to make your workflow smoother and help you save time so you can focus on growing your business. I am reliable, detail-oriented, and adaptable to each client’s unique needs.</p>
+    </section>
+
+    <!-- Services -->
+    <section id="services">
+      <h3>Services I Offer</h3>
+      <ul>
+        <li><strong>Email Management:</strong> Organizing inboxes, responding to clients, and managing communication efficiently.</li>
+        <li><strong>Data Entry & Spreadsheets:</strong> Accurate data entry, Excel formulas, Google Sheets management.</li>
+        <li><strong>Calendar & Appointment Management:</strong> Scheduling meetings, setting reminders, and managing calendars.</li>
+        <li><strong>File & Drive Organization:</strong> Structuring Google Drive or other file systems for easy access.</li>
+        <li><strong>Graphic Support:</strong> Creating simple visuals for presentations or social media using Canva.</li>
+        <li><strong>Administrative Support:</strong> Assisting with daily tasks, document formatting, and general office support.</li>
+      </ul>
+    </section>
+
+    <!-- Skills -->
+    <section>
+      <h3>Skills</h3>
+      <div class="skills-grid">
+        <div class="skill">Email Management</div>
+        <div class="skill">Data Entry</div>
+        <div class="skill">Google Drive</div>
+        <div class="skill">Calendar Management</div>
+        <div class="skill">Microsoft Excel</div>
+        <div class="skill">Canva</div>
+        <div class="skill">Document Formatting</div>
+        <div class="skill">Time Management</div>
+        <div class="skill">Task Prioritization</div>
+      </div>
+    </section>
+
+    <!-- Portfolio / Sample Work -->
+    <section id="portfolio">
+      <h3>Portfolio / Sample Work</h3>
+      <div class="portfolio-grid">
+        <div class="portfolio-item">
+          <img src="cv.png" alt="Email Management Example">
+          <p>Email inbox organized with labels and folders</p>
+        </div>
+        <div class="portfolio-item">
+          <img src="vt.jpeg" alt="Spreadsheet Example">
+          <p>Google Sheet for task tracking and data entry</p>
+        </div>
+        <div class="portfolio-item">
+          <img src="wer.png" alt="Canva Design Example">
+          <p>Simple Canva design for presentation or social media</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials">
+      <h3>Client Testimonials</h3>
+      <div class="testimonials">
+        <div class="testimonial active">
+          <p>"Emmanuel is incredibly reliable and professional. He organized my entire email system and created spreadsheets that saved me hours every week. Highly recommended!"</p>
+          <strong>— Sarah O., Small Business Owner</strong>
+        </div>
+        <div class="testimonial">
+          <p>"Working with Emmanuel has been a game-changer for my productivity. His attention to detail and quick response time make him the perfect virtual assistant for my team."</p>
+          <strong>— Michael K., Entrepreneur</strong>
+        </div>
+        <div class="testimonial">
+          <p>"I was impressed by how quickly Emmanuel learned my workflow and adapted to my needs. He's professional, punctual, and delivers quality work every time."</p>
+          <strong>— Jessica M., Freelancer</strong>
+        </div>
+      </div>
+      <div class="carousel-controls">
+        <button class="carousel-btn" onclick="previousTestimonial()">← Previous</button>
+        <span id="testimonial-count">1 / 3</span>
+        <button class="carousel-btn" onclick="nextTestimonial()">Next →</button>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section>
+      <h3>Experience</h3>
+      <ul>
+        <li><strong>Freelance Virtual Assistant</strong> | Remote | 2025 – Present</li>
+        <li>Managed email communication and organized client inboxes.</li>
+        <li>Performed accurate data entry and created spreadsheets for tracking tasks.</li>
+        <li>Structured Google Drive folders and files for easy client access.</li>
+        <li>Scheduled appointments and handled calendar organization.</li>
+        <li>Designed basic graphics for client presentations and social media posts using Canva.</li>
+        <li>Provided general administrative support to ensure smooth workflow.</li>
+      </ul>
+    </section>
+
+    <!-- Education -->
+    <section>
+      <h3>Education</h3>
+      <ul>
+        <li>Secondary School Certificate | [Uxford College] | Expected [2017]</li>
+      </ul>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <h3>Get in Touch</h3>
+      <p style="margin-bottom: 25px;">If you want assistance with your administrative tasks or need a reliable Virtual Assistant to manage your workflow, feel free to reach out.</p>
+      
+      <h4 style="color: #667eea; margin-bottom: 15px;">Direct Contact</h4>
+      <ul style="margin-bottom: 30px;">
+        <li>📧 Email: <a href="mailto:itsemmanuelj122@gmail.com" style="color: #667eea; text-decoration: none;">itsemmanuelj122@gmail.com</a></li>
+        <li>📱 Phone: <a href="tel:+2347073607977" style="color: #667eea; text-decoration: none;">+2347073607977</a></li>
+      </ul>
+
+      <h4 style="color: #667eea; margin-bottom: 15px;">Send a Message</h4>
+      <form class="contact-form" onsubmit="handleSubmit(event)">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <input type="text" placeholder="Subject">
+        <textarea rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </section>
+
+    <footer>
+      &copy; 2026 Emmanuel John | Virtual Assistant Portfolio | <a href="#home" style="color: #667eea; text-decoration: none;">Back to Top</a>
+    </footer>
+  </div>
+
+  <script>
+    let currentTestimonial = 0;
+    const testimonials = document.querySelectorAll('.testimonial');
+    
+    function showTestimonial(index) {
+      testimonials.forEach((t, i) => {
+        t.classList.remove('active');
+        if (i === index) t.classList.add('active');
+      });
+      document.getElementById('testimonial-count').textContent = (index + 1) + ' / ' + testimonials.length;
+    }
+    
+    function nextTestimonial() {
+      currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+      showTestimonial(currentTestimonial);
+    }
+    
+    function previousTestimonial() {
+      currentTestimonial = (currentTestimonial - 1 + testimonials.length) % testimonials.length;
+      showTestimonial(currentTestimonial);
+    }
+
+    function handleSubmit(event) {
+      event.preventDefault();
+      const form = event.target;
+      const name = form.querySelector('input[type="text"]').value;
+      const email = form.querySelector('input[type="email"]').value;
+      
+      // Create mailto link with form data
+      const subject = form.querySelector('input[placeholder="Subject"]').value || 'Message from Portfolio';
+      const message = form.querySelector('textarea').value;
+      const mailtoLink = `mailto:itsemmanuelj122@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`)}`;
+      
+      window.location.href = mailtoLink;
+      form.reset();
+    }
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', (e) => {
+        const href = link.getAttribute('href');
+        if (href.startsWith('#')) {
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+
